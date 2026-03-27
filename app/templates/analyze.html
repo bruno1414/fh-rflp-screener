@@ -1,0 +1,344 @@
+{% extends "base.html" %}
+{% block title %}Run Analysis — FH RFLP Screener{% endblock %}
+
+{% block content %}
+
+<div style="margin-bottom:2rem;">
+    <h1 style="font-size:1.6rem; font-weight:700; color:#f1f5f9;">
+        Run Analysis
+    </h1>
+    <p style="color:#94a3b8; margin-top:0.4rem;">
+        Submit any FH mutation to run the full computational pipeline.
+        Fetches live sequence data from Ensembl and scans 623 enzymes.
+    </p>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; 
+            gap:1.5rem; align-items:start;">
+
+    <!-- Input form -->
+    <div class="card">
+        <h2>Mutation Input</h2>
+
+        <div class="form-group">
+            <label>Gene</label>
+            <select id="input-gene">
+                <option value="LDLR">LDLR</option>
+                <option value="APOB">APOB</option>
+                <option value="PCSK9">PCSK9</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>cDNA Change (e.g. c.408C>G)</label>
+            <input type="text" id="input-cdna" 
+                   placeholder="c.408C>G">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Chromosome</label>
+                <input type="text" id="input-chrom" 
+                       placeholder="19">
+            </div>
+            <div class="form-group">
+                <label>Position (GRCh38)</label>
+                <input type="text" id="input-pos" 
+                       placeholder="11105314">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Reference allele</label>
+                <input type="text" id="input-ref" 
+                       placeholder="C" maxlength="1">
+            </div>
+            <div class="form-group">
+                <label>Alternate allele</label>
+                <input type="text" id="input-alt" 
+                       placeholder="G" maxlength="1">
+            </div>
+        </div>
+
+        <button class="btn btn-primary" 
+                onclick="runAnalysis()"
+                id="run-btn"
+                style="width:100%; 
+                       justify-content:center; 
+                       padding:0.7rem;">
+            Run Analysis
+        </button>
+
+        <!-- Quick fill examples -->
+        <div style="margin-top:1.2rem;">
+            <div style="color:#64748b; 
+                        font-size:0.8rem; 
+                        margin-bottom:0.5rem;">
+                Quick examples:
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn btn-secondary"
+                        style="padding:0.3rem 0.7rem; font-size:0.78rem;"
+                        onclick="fillExample('LDLR','c.408C>G','19','11105314','C','G')">
+                    LDLR c.408C>G
+                </button>
+                <button class="btn btn-secondary"
+                        style="padding:0.3rem 0.7rem; font-size:0.78rem;"
+                        onclick="fillExample('LDLR','c.1865A>T','19','11120111','A','T')">
+                    LDLR c.1865A>T
+                </button>
+                <button class="btn btn-secondary"
+                        style="padding:0.3rem 0.7rem; font-size:0.78rem;"
+                        onclick="fillExample('APOB','c.9721G>T','2','21085170','G','T')">
+                    APOB c.9721G>T
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results panel -->
+    <div id="results-area">
+
+        <!-- Idle state -->
+        <div id="idle-state" class="card" 
+             style="text-align:center; padding:3rem 1.5rem;">
+            <div style="font-size:2.5rem; margin-bottom:1rem;">⚗️</div>
+            <div style="color:#475569; font-size:0.9rem; line-height:1.6;">
+                Fill in the mutation details and click<br>
+                <strong style="color:#94a3b8;">Run Analysis</strong> 
+                to see results.
+            </div>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loading-state" class="card hidden"
+             style="text-align:center; padding:3rem 1.5rem;">
+            <div class="spinner" 
+                 style="width:32px; height:32px; 
+                        border-width:3px; margin:0 auto 1rem;">
+            </div>
+            <div style="color:#94a3b8; font-size:0.9rem;">
+                Running pipeline...
+            </div>
+            <div id="loading-step"
+                 style="color:#475569; font-size:0.8rem; margin-top:0.5rem;">
+                Fetching sequence from Ensembl
+            </div>
+        </div>
+
+        <!-- Error state -->
+        <div id="error-state" class="hidden">
+            <div class="alert alert-error" id="error-msg"></div>
+        </div>
+
+        <!-- Results state -->
+        <div id="result-state" class="hidden">
+
+            <div class="card" 
+                 style="border-color:#0ea5e9; margin-bottom:1rem;">
+                <div style="display:flex; 
+                            justify-content:space-between; 
+                            align-items:center; 
+                            margin-bottom:1rem;">
+                    <h2 id="result-title">Results</h2>
+                    <span id="result-quality-badge" class="badge"></span>
+                </div>
+
+                <table style="font-size:0.875rem; margin-bottom:1rem;">
+                    <tr>
+                        <td style="color:#64748b; padding:0.35rem 1rem 0.35rem 0; border:none;">
+                            Best enzyme
+                        </td>
+                        <td id="r-enzyme" 
+                            style="border:none; font-family:monospace; 
+                                   font-weight:700; color:#38bdf8;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#64748b; padding:0.35rem 1rem 0.35rem 0; border:none;">
+                            Site change
+                        </td>
+                        <td id="r-change" style="border:none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="color:#64748b; padding:0.35rem 1rem 0.35rem 0; border:none;">
+                            WT fragments
+                        </td>
+                        <td id="r-wt" 
+                            style="border:none; font-family:monospace;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#64748b; padding:0.35rem 1rem 0.35rem 0; border:none;">
+                            Mutant fragments
+                        </td>
+                        <td id="r-mut" 
+                            style="border:none; font-family:monospace;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#64748b; padding:0.35rem 1rem 0.35rem 0; border:none;">
+                            Fragment difference
+                        </td>
+                        <td id="r-diff" 
+                            style="border:none; font-weight:700; 
+                                   color:#34d399;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#64748b; padding:0.35rem 1rem 0.35rem 0; border:none;">
+                            Enzymes found
+                        </td>
+                        <td id="r-n-enzymes" style="border:none;"></td>
+                    </tr>
+                </table>
+
+                <!-- Alternative enzymes -->
+                <div style="margin-bottom:1rem;">
+                    <div style="color:#64748b; 
+                                font-size:0.8rem; 
+                                margin-bottom:0.4rem;">
+                        Top alternative enzymes:
+                    </div>
+                    <div id="r-alternatives" 
+                         style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Gel image -->
+            <div class="card" style="padding:0; overflow:hidden;">
+                <div style="padding:0.8rem 1rem; 
+                            border-bottom:1px solid #334155;">
+                    <span style="font-size:0.875rem; 
+                                 font-weight:600; color:#94a3b8;">
+                        Gel Simulation
+                    </span>
+                </div>
+                <div class="gel-container" style="border-radius:0;">
+                    <img id="r-gel" src="" alt="Gel simulation">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function fillExample(gene, cdna, chrom, pos, ref, alt) {
+    document.getElementById("input-gene").value  = gene;
+    document.getElementById("input-cdna").value  = cdna;
+    document.getElementById("input-chrom").value = chrom;
+    document.getElementById("input-pos").value   = pos;
+    document.getElementById("input-ref").value   = ref;
+    document.getElementById("input-alt").value   = alt;
+}
+
+function setState(state) {
+    ["idle-state","loading-state","error-state","result-state"]
+        .forEach(id => {
+            document.getElementById(id).classList.add("hidden");
+        });
+    document.getElementById(state + "-state")
+            .classList.remove("hidden");
+}
+
+function runAnalysis() {
+    const gene  = document.getElementById("input-gene").value.trim();
+    const cdna  = document.getElementById("input-cdna").value.trim();
+    const chrom = document.getElementById("input-chrom").value.trim();
+    const pos   = document.getElementById("input-pos").value.trim();
+    const ref   = document.getElementById("input-ref").value.trim();
+    const alt   = document.getElementById("input-alt").value.trim();
+
+    if (!gene || !cdna || !chrom || !pos || !ref || !alt) {
+        setState("error");
+        document.getElementById("error-msg").textContent =
+            "Please fill in all fields before running analysis.";
+        return;
+    }
+
+    setState("loading");
+
+    // Animate loading steps
+    const steps = [
+        "Fetching sequence from Ensembl...",
+        "Introducing mutation...",
+        "Scanning 623 restriction enzymes...",
+        "Generating gel simulation...",
+    ];
+    let stepIndex = 0;
+    const stepEl  = document.getElementById("loading-step");
+    const interval = setInterval(() => {
+        stepIndex = (stepIndex + 1) % steps.length;
+        stepEl.textContent = steps[stepIndex];
+    }, 2000);
+
+    fetch("/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ gene, cdna_change: cdna, 
+                               chrom, pos, ref, alt })
+    })
+    .then(r => r.json())
+    .then(data => {
+        clearInterval(interval);
+
+        if (data.error) {
+            setState("error");
+            document.getElementById("error-msg").textContent = data.error;
+            return;
+        }
+
+        // Populate results
+        document.getElementById("result-title").textContent =
+            `${data.gene} ${data.cdna_change}`;
+
+        const qBadge = document.getElementById("result-quality-badge");
+        qBadge.textContent  = data.gel_quality;
+        qBadge.className    = `badge badge-${data.gel_quality}`;
+
+        document.getElementById("r-enzyme").textContent =
+            data.best_enzyme;
+        document.getElementById("r-change").textContent =
+            data.change_type.replace("_", " ");
+        document.getElementById("r-wt").textContent =
+            data.wt_frags.join(", ") + " bp";
+        document.getElementById("r-mut").textContent =
+            data.mut_frags.join(", ") + " bp";
+        document.getElementById("r-diff").textContent =
+            data.frag_diff_bp + " bp";
+        document.getElementById("r-n-enzymes").textContent =
+            data.n_enzymes + " enzymes found";
+
+        // Alternative enzymes
+        const altDiv = document.getElementById("r-alternatives");
+        altDiv.innerHTML = "";
+        data.all_enzymes.forEach(e => {
+            const span = document.createElement("span");
+            span.className   = "badge badge-good";
+            span.textContent = e.enzyme;
+            span.style.cursor = "pointer";
+            altDiv.appendChild(span);
+        });
+
+        // Gel image
+        document.getElementById("r-gel").src =
+            `data:image/png;base64,${data.gel_image}`;
+
+        setState("result");
+    })
+    .catch(() => {
+        clearInterval(interval);
+        setState("error");
+        document.getElementById("error-msg").textContent =
+            "Network error. Please try again.";
+    });
+}
+</script>
+{% endblock %}

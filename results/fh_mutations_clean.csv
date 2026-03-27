@@ -1,0 +1,28 @@
+clinvar_id,gene,title,cdna_change,protein_change,clin_sig,var_type,chrom,pos,ref,alt,spdi
+4812876,LDLR,NM_000527.5(LDLR):c.408C>G (p.Asp136Glu),c.408C>G,"D136E, D95E",Likely pathogenic,single nucleotide variant,19,11105314,,,NC_000019.10:11105313:C:G
+4812851,LDLR,NM_000527.5(LDLR):c.155G>T (p.Cys52Phe),c.155G>T,"C138F, C52F",Likely pathogenic,single nucleotide variant,19,11100310,,,NC_000019.10:11100309:G:T
+4812843,LDLR,NM_000527.5(LDLR):c.457T>C (p.Phe153Leu),c.457T>C,"F112L, F153L",Likely pathogenic,single nucleotide variant,19,11105363,,,NC_000019.10:11105362:T:C
+4812842,LDLR,NM_000527.5(LDLR):c.1840T>G (p.Phe614Val),c.1840T>G,"F446V, F487V, F573V, F614V",Likely pathogenic,single nucleotide variant,19,11116993,,,NC_000019.10:11116992:T:G
+4810747,LDLR,NM_000527.5(LDLR):c.1054T>G (p.Cys352Gly),c.1054T>G,"C184G, C225G, C311G, C352G",Likely pathogenic,single nucleotide variant,19,11110765,,,NC_000019.10:11110764:T:G
+4802605,LDLR,NM_000527.5(LDLR):c.1961T>G (p.Leu654Arg),c.1961T>G,"L486R, L527R, L613R, L654R",Likely pathogenic,single nucleotide variant,19,11120207,,,NC_000019.10:11120206:T:G
+4802604,LDLR,NM_000527.5(LDLR):c.1865A>T (p.Asp622Val),c.1865A>T,"D454V, D495V, D581V, D622V",Likely pathogenic,single nucleotide variant,19,11120111,,,NC_000019.10:11120110:A:T
+4802602,LDLR,NM_000527.5(LDLR):c.1724T>A (p.Leu575His),c.1724T>A,"L407H, L448H, L534H, L575H",Likely pathogenic,single nucleotide variant,19,11116877,,,NC_000019.10:11116876:T:A
+4802599,LDLR,NM_000527.5(LDLR):c.1074T>G (p.Cys358Trp),c.1074T>G,"C190W, C231W, C317W, C358W",Likely pathogenic,single nucleotide variant,19,11111527,,,NC_000019.10:11111526:T:G
+4802598,LDLR,NM_000527.5(LDLR):c.986G>C (p.Cys329Ser),c.986G>C,"C161S, C202S, C288S, C329S",Likely pathogenic,single nucleotide variant,19,11110697,,,NC_000019.10:11110696:G:C
+4802595,LDLR,NM_000527.5(LDLR):c.648T>G (p.Cys216Trp),c.648T>G,"C175W, C216W",Likely pathogenic,single nucleotide variant,19,11105554,,,NC_000019.10:11105553:T:G
+4802594,LDLR,NM_000527.5(LDLR):c.398A>G (p.Asp133Gly),c.398A>G,"D133G, D92G",Likely pathogenic,single nucleotide variant,19,11105304,,,NC_000019.10:11105303:A:G
+4771976,LDLR,NM_000527.5(LDLR):c.483C>G (p.Ile161Met),c.483C>G,"I161M, I120M",Likely pathogenic,single nucleotide variant,19,11105389,,,NC_000019.10:11105388:C:G
+4758041,LDLR,NM_000527.5(LDLR):c.1067A>G (p.Asp356Gly),c.1067A>G,"D188G, D229G, D315G, D356G",Likely pathogenic,single nucleotide variant,19,11111520,,,NC_000019.10:11111519:A:G
+4726831,LDLR,NM_000527.5(LDLR):c.818-1G>T,NM_000527.5(LDLR):c.818-1G>T,,Pathogenic,single nucleotide variant,19,11107391,,,NC_000019.10:11107390:G:T
+4708249,LDLR,NM_000527.5(LDLR):c.1297G>A (p.Asp433Asn),c.1297G>A,"D392N, D433N, D265N, D306N",Likely pathogenic,single nucleotide variant,19,11113388,,,NC_000019.10:11113387:G:A
+4695160,LDLR,NM_000527.5(LDLR):c.325T>A (p.Cys109Ser),c.325T>A,"C109S, C68S",Pathogenic,single nucleotide variant,19,11105231,,,NC_000019.10:11105230:T:A
+4540597,LDLR,NM_000527.5(LDLR):c.348C>A (p.Cys116Ter),c.348C>A,"C116*, C75*",Likely pathogenic,single nucleotide variant,19,11105254,,,NC_000019.10:11105253:C:A
+4540594,LDLR,NM_000527.5(LDLR):c.632A>G (p.His211Arg),c.632A>G,"H170R, H211R",Likely pathogenic,single nucleotide variant,19,11105538,,,NC_000019.10:11105537:A:G
+4530625,LDLR,NM_000527.5(LDLR):c.270T>G (p.Asp90Glu),c.270T>G,"D176E, D90E",Likely pathogenic,single nucleotide variant,19,11102743,,,NC_000019.10:11102742:T:G
+4528366,LDLR,NM_000527.5(LDLR):c.68-2A>C,NM_000527.5(LDLR):c.68-2A>C,,Pathogenic,single nucleotide variant,19,11100221,,,NC_000019.10:11100220:A:C
+4794201,APOB,NM_000384.3(APOB):c.9721G>T (p.Glu3241Ter),c.9721G>T,E3241*,Pathogenic,single nucleotide variant,2,21007147,,,NC_000002.12:21007146:C:A
+4792430,APOB,NM_000384.3(APOB):c.11470C>T (p.Gln3824Ter),c.11470C>T,Q3824*,Pathogenic,single nucleotide variant,2,21005398,,,NC_000002.12:21005397:G:A
+4787609,APOB,NM_000384.3(APOB):c.6022G>T (p.Glu2008Ter),c.6022G>T,E2008*,Pathogenic,single nucleotide variant,2,21010846,,,NC_000002.12:21010845:C:A
+4786150,APOB,NM_000384.3(APOB):c.5303C>A (p.Ser1768Ter),c.5303C>A,S1768*,Pathogenic,single nucleotide variant,2,21011565,,,NC_000002.12:21011564:G:T
+4784371,APOB,NM_000384.3(APOB):c.8602G>T (p.Glu2868Ter),c.8602G>T,E2868*,Pathogenic,single nucleotide variant,2,21008266,,,NC_000002.12:21008265:C:A
+4277664,PCSK9,NM_174936.4(PCSK9):c.399+1G>A,NM_174936.4(PCSK9):c.399+1G>A,,Likely pathogenic,single nucleotide variant,1,55044035,,,NC_000001.11:55044034:G:A

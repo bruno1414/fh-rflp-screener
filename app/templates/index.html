@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block title %}FH RFLP Screener — Home{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<div style="text-align:center; padding: 3rem 0 2rem;">
+    <div style="display:inline-block; background:#0c4a6e; 
+                color:#38bdf8; padding:4px 12px; border-radius:20px; 
+                font-size:0.8rem; font-weight:600; margin-bottom:1rem;">
+        Computational Genomics Tool
+    </div>
+    <h1 style="font-size:2.4rem; font-weight:700; 
+               color:#f1f5f9; line-height:1.2; margin-bottom:1rem;">
+        FH RFLP Screener
+    </h1>
+    <p style="font-size:1.1rem; color:#94a3b8; 
+              max-width:600px; margin:0 auto 2rem; line-height:1.7;">
+        Identify which Familial Hypercholesterolemia mutations can be 
+        detected using low-cost PCR–RFLP assays — making genetic 
+        screening accessible worldwide.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="/panel"   class="btn btn-primary">Browse Panel</a>
+        <a href="/analyze" class="btn btn-secondary">Run Analysis</a>
+    </div>
+</div>
+
+<!-- Stats row -->
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); 
+            gap:1rem; margin:2rem 0;">
+
+    <div class="card" style="text-align:center; padding:1.5rem;">
+        <div style="font-size:2rem; font-weight:700; color:#38bdf8;">27</div>
+        <div style="color:#94a3b8; font-size:0.875rem; margin-top:4px;">
+            P/LP variants analyzed
+        </div>
+    </div>
+
+    <div class="card" style="text-align:center; padding:1.5rem;">
+        <div style="font-size:2rem; font-weight:700; color:#34d399;">100%</div>
+        <div style="color:#94a3b8; font-size:0.875rem; margin-top:4px;">
+            RFLP detectable
+        </div>
+    </div>
+
+    <div class="card" style="text-align:center; padding:1.5rem;">
+        <div style="font-size:2rem; font-weight:700; color:#a78bfa;">10</div>
+        <div style="color:#94a3b8; font-size:0.875rem; margin-top:4px;">
+            Panel mutations
+        </div>
+    </div>
+
+    <div class="card" style="text-align:center; padding:1.5rem;">
+        <div style="font-size:2rem; font-weight:700; color:#fb923c;">98%</div>
+        <div style="color:#94a3b8; font-size:0.875rem; margin-top:4px;">
+            Cheaper than NGS
+        </div>
+    </div>
+
+</div>
+
+<!-- Two feature cards -->
+<div style="display:grid; grid-template-columns:1fr 1fr; 
+            gap:1.5rem; margin-top:1rem;">
+
+    <div class="card">
+        <div style="font-size:1.5rem; margin-bottom:0.75rem;">🔍</div>
+        <h2>Panel Lookup</h2>
+        <p style="color:#94a3b8; font-size:0.9rem; 
+                  line-height:1.6; margin-bottom:1.2rem;">
+            Search our pre-built panel of 10 recommended mutations. 
+            View gel simulations, enzyme details, and fragment sizes 
+            instantly — no computation needed.
+        </p>
+        <a href="/panel" class="btn btn-primary">Browse Panel</a>
+    </div>
+
+    <div class="card">
+        <div style="font-size:1.5rem; margin-bottom:0.75rem;">⚗️</div>
+        <h2>Run Analysis</h2>
+        <p style="color:#94a3b8; font-size:0.9rem; 
+                  line-height:1.6; margin-bottom:1.2rem;">
+            Submit any FH mutation and run the full pipeline. 
+            Fetches live sequence data, scans 623 enzymes, 
+            and generates a gel simulation in seconds.
+        </p>
+        <a href="/analyze" class="btn btn-secondary">Run Analysis</a>
+    </div>
+
+</div>
+
+<!-- How it works -->
+<div class="card" style="margin-top:1.5rem;">
+    <h2>How it works</h2>
+    <div style="display:grid; 
+                grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); 
+                gap:1rem; margin-top:0.5rem;">
+
+        <div style="text-align:center; padding:1rem;">
+            <div style="font-size:1.4rem; margin-bottom:0.5rem;">1</div>
+            <div style="font-weight:600; color:#f1f5f9; 
+                        margin-bottom:0.3rem; font-size:0.9rem;">
+                Input mutation
+            </div>
+            <div style="color:#64748b; font-size:0.8rem;">
+                Gene, cDNA change, coordinates
+            </div>
+        </div>
+
+        <div style="text-align:center; padding:1rem;">
+            <div style="font-size:1.4rem; margin-bottom:0.5rem;">2</div>
+            <div style="font-weight:600; color:#f1f5f9; 
+                        margin-bottom:0.3rem; font-size:0.9rem;">
+                Fetch sequence
+            </div>
+            <div style="color:#64748b; font-size:0.8rem;">
+                GRCh38 via Ensembl API
+            </div>
+        </div>
+
+        <div style="text-align:center; padding:1rem;">
+            <div style="font-size:1.4rem; margin-bottom:0.5rem;">3</div>
+            <div style="font-weight:600; color:#f1f5f9; 
+                        margin-bottom:0.3rem; font-size:0.9rem;">
+                Scan enzymes
+            </div>
+            <div style="color:#64748b; font-size:0.8rem;">
+                623 commercial enzymes tested
+            </div>
+        </div>
+
+        <div style="text-align:center; padding:1rem;">
+            <div style="font-size:1.4rem; margin-bottom:0.5rem;">4</div>
+            <div style="font-weight:600; color:#f1f5f9; 
+                        margin-bottom:0.3rem; font-size:0.9rem;">
+                Simulate gel
+            </div>
+            <div style="color:#64748b; font-size:0.8rem;">
+                WT, Het, Mutant patterns
+            </div>
+        </div>
+
+        <div style="text-align:center; padding:1rem;">
+            <div style="font-size:1.4rem; margin-bottom:0.5rem;">5</div>
+            <div style="font-weight:600; color:#f1f5f9; 
+                        margin-bottom:0.3rem; font-size:0.9rem;">
+                Get results
+            </div>
+            <div style="color:#64748b; font-size:0.8rem;">
+                Best enzyme + cost estimate
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

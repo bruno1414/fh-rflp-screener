@@ -1,0 +1,7 @@
+flask
+biopython
+pandas
+requests
+matplotlib
+numpy
+gunicorn

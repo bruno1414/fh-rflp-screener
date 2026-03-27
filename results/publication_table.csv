@@ -1,0 +1,11 @@
+Gene,cDNA Change,Protein Change,Enzyme,Site Change,WT Fragments (bp),Mutant Fragments (bp),Fragment Diff (bp),Enzyme Cost (USD),Gel Quality,RFLP Score
+APOB,c.9721G>T,E3241*,EcoT38I,Site Destroyed,"[301, 300]",[601],300,20,excellent,9.78
+APOB,c.11470C>T,Q3824*,MaeI,Site Created,[601],"[300, 301]",300,25,excellent,9.56
+LDLR,c.1865A>T,"D454V, D495V, D581V, D622V",EcoRV,Site Destroyed,"[303, 298]",[601],298,15,excellent,8.48
+LDLR,c.408C>G,"D136E, D95E",EcoT38I,Site Created,[601],"[306, 295]",295,20,excellent,8.23
+APOB,c.8602G>T,E2868*,BstSFI,Site Created,[601],"[300, 301]",300,55,excellent,8.22
+APOB,c.5303C>A,S1768*,Eam1104I,Site Destroyed,"[69, 228, 304]","[69, 532]",228,40,excellent,8.17
+LDLR,c.483C>G,"I161M, I120M",PaeI,Site Created,[601],"[302, 299]",299,30,excellent,7.82
+LDLR,c.986G>C,"C161S, C202S, C288S, C329S",BsrDI,Site Destroyed,"[309, 292]",[601],292,30,excellent,7.75
+LDLR,c.325T>A,"C109S, C68S",BtrI,Site Destroyed,"[300, 301]",[601],300,35,excellent,7.61
+LDLR,NM_000527.5(LDLR):c.68-2A>C,,BstDSI,Site Created,[601],"[301, 300]",300,35,excellent,7.61

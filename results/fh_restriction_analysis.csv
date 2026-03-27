@@ -1,0 +1,28 @@
+gene,cdna_change,protein_change,chrom,pos,rflp_detectable,n_enzymes,best_enzyme,change_type,wt_frags,mut_frags,frag_diff_bp,all_enzymes,gel_quality
+LDLR,c.408C>G,"D136E, D95E",19,11105314,True,12,EcoT38I,site_created,[601],"[306, 295]",295,"['EcoT38I', 'Eco24I', 'BanII', 'FriOI', 'PcsI']",excellent
+LDLR,c.155G>T,"C138F, C52F",19,11100310,True,6,PfoI,site_created,[601],"[302, 299]",299,"['PfoI', 'BglI', 'BstMWI', 'MwoI', 'HpyF10VI']",excellent
+LDLR,c.457T>C,"F112L, F153L",19,11105363,True,8,GsuI,site_created,"[463, 138]","[287, 176, 138]",176,"['GsuI', 'BpmI', 'MnlI', 'AluBI', 'AluI']",excellent
+LDLR,c.1840T>G,"F446V, F487V, F573V, F614V",19,11116993,True,3,Hpy99I,site_created,[601],"[302, 299]",299,"['Hpy99I', 'MspJI', 'AbaSI']",excellent
+LDLR,c.1054T>G,"C184G, C225G, C311G, C352G",19,11110765,True,10,Eam1104I,site_created,[601],"[292, 309]",292,"['Eam1104I', 'Bst6I', 'EarI', 'LweI', 'SfaNI']",excellent
+LDLR,c.1961T>G,"L486R, L527R, L613R, L654R",19,11120207,True,6,Eam1104I,site_destroyed,"[307, 294]",[601],294,"['Eam1104I', 'Bst6I', 'EarI', 'MboII', 'MspJI']",excellent
+LDLR,c.1865A>T,"D454V, D495V, D581V, D622V",19,11120111,True,6,EcoRV,site_destroyed,"[303, 298]",[601],298,"['EcoRV', 'Eco32I', 'HpyCH4III', 'Bst4CI', 'TaaI']",excellent
+LDLR,c.1724T>A,"L407H, L448H, L534H, L575H",19,11116877,True,1,MnlI,site_destroyed,"[12, 7, 50, 31, 15, 49, 68, 9, 26, 31, 12, 59, 11, 34, 102, 3, 82]","[12, 7, 50, 31, 15, 49, 68, 9, 26, 31, 71, 11, 34, 102, 3, 82]",0,['MnlI'],unusable
+LDLR,c.1074T>G,"C190W, C231W, C317W, C358W",19,11111527,True,4,MspJI,site_destroyed,"[18, 17, 1, 15, 23, 4, 1, 2, 4, 8, 6, 0, 5, 7, 2, 3, 15, 10, 12, 1, 8, 3, 13, 1, 1, 2, 5, 3, 2, 5, 1, 0, 1, 5, 6, 7, 11, 1, 2, 1, 3, 15, 22, 4, 1, 5, 6, 9, 1, 16, 1, 1, 5, 1, 6, 7, 9, 5, 1, 1, 0, 14, 6, 18, 4, 3, 2, 2, 2, 0, 2, 2, 6, 4, 7, 9, 2, 11, 12, 2, 7, 4, 3, 7, 20, 10, 2, 3, 1, 2, 5, 2, 1, 4, 0, 1, 12, 4, 1, 7, 1, 1, 4, 1, 1, 14, 10, 6, 4, 4]","[18, 17, 1, 15, 23, 4, 1, 2, 4, 8, 6, 0, 5, 7, 2, 3, 15, 10, 12, 1, 8, 3, 13, 1, 1, 2, 5, 3, 2, 5, 1, 0, 1, 5, 6, 7, 11, 1, 2, 1, 3, 15, 22, 4, 1, 5, 15, 1, 16, 1, 1, 5, 1, 6, 7, 9, 5, 1, 1, 0, 14, 6, 18, 4, 3, 2, 2, 2, 0, 2, 2, 6, 4, 7, 9, 2, 11, 12, 2, 7, 4, 3, 7, 20, 10, 2, 3, 1, 2, 5, 2, 1, 4, 0, 1, 12, 4, 1, 7, 1, 1, 4, 1, 1, 14, 10, 6, 4, 4]",0,"['MspJI', 'Hpy188III', 'AbaSI', 'FspEI']",unusable
+LDLR,c.986G>C,"C161S, C202S, C288S, C329S",19,11110697,True,13,BsrDI,site_destroyed,"[309, 292]",[601],292,"['BsrDI', 'BseMI', 'Bse3DI', 'BcoDI', 'BsmBI']",excellent
+LDLR,c.648T>G,"C175W, C216W",19,11105554,True,12,GsaI,site_created,"[143, 458]","[143, 159, 299]",159,"['GsaI', 'BseYI', 'PspFI', 'FokI', 'BseGI']",excellent
+LDLR,c.398A>G,"D133G, D92G",19,11105304,True,23,BsaJI,site_created,"[82, 33, 29, 89, 241, 127]","[82, 33, 29, 89, 64, 177, 127]",64,"['BsaJI', 'BseDI', 'BssECI', 'BbvI', 'BstV1I']",good
+LDLR,c.483C>G,"I161M, I120M",19,11105389,True,28,PaeI,site_created,[601],"[302, 299]",299,"['PaeI', 'SphI', 'Hin1II', 'NlaIII', 'XceI']",excellent
+LDLR,c.1067A>G,"D188G, D229G, D315G, D356G",19,11111520,True,17,BshVI,site_destroyed,"[299, 302]",[601],299,"['BshVI', 'ClaI', 'Bsa29I', 'Bsu15I', 'BsuTUI']",excellent
+LDLR,NM_000527.5(LDLR):c.818-1G>T,,19,11107391,True,11,BtsIMutI,site_destroyed,"[26, 280, 295]","[26, 575]",280,"['BtsIMutI', 'TspRI', 'TscAI', 'HpyCH4III', 'Bst4CI']",excellent
+LDLR,c.1297G>A,"D392N, D433N, D265N, D306N",19,11113388,True,6,Hpy188III,site_destroyed,"[232, 67, 302]","[232, 369]",67,"['Hpy188III', 'LpnPI', 'SgeI', 'AbaSI', 'FspEI']",good
+LDLR,c.325T>A,"C109S, C68S",19,11105231,True,22,BtrI,site_destroyed,"[300, 301]",[601],300,"['BtrI', 'BmgBI', 'AjiI', 'EcoICRI', 'Ecl136II']",excellent
+LDLR,c.348C>A,"C116*, C75*",19,11105254,True,16,SatI,site_destroyed,"[185, 3, 77, 34, 196, 3, 103]","[185, 3, 77, 230, 3, 103]",34,"['SatI', 'Fsp4HI', 'GluI', 'ApeKI', 'TseI']",poor
+LDLR,c.632A>G,"H170R, H211R",19,11105538,True,9,AccBSI,site_created,[601],"[302, 299]",299,"['AccBSI', 'BsrBI', 'MbiI', 'LmnI', 'BspACI']",excellent
+LDLR,c.270T>G,"D176E, D90E",19,11102743,True,20,BtgZI,site_destroyed,"[313, 288]",[601],288,"['BtgZI', 'MluNI', 'Mox20I', 'MlsI', 'Msp20I']",excellent
+LDLR,NM_000527.5(LDLR):c.68-2A>C,,19,11100221,True,18,BstDSI,site_created,[601],"[301, 300]",300,"['BstDSI', 'BtgI', 'TspGWI', 'DdeI', 'HpyF3I']",excellent
+APOB,c.9721G>T,E3241*,2,21007147,True,23,EcoT38I,site_destroyed,"[301, 300]",[601],300,"['EcoT38I', 'Bsp1286I', 'SstI', 'Eco24I', 'SduI']",excellent
+APOB,c.11470C>T,Q3824*,2,21005398,True,16,MaeI,site_created,[601],"[300, 301]",300,"['MaeI', 'XspI', 'FspBI', 'SspMI', 'BfaI']",excellent
+APOB,c.6022G>T,E2008*,2,21010846,True,3,LmnI,site_destroyed,"[304, 173, 124]","[477, 124]",173,"['LmnI', 'AbaSI', 'FspEI']",excellent
+APOB,c.5303C>A,S1768*,2,21011565,True,11,Eam1104I,site_destroyed,"[69, 228, 304]","[69, 532]",228,"['Eam1104I', 'Bst6I', 'MboII', 'EarI', 'AgsI']",excellent
+APOB,c.8602G>T,E2868*,2,21008266,True,17,BstSFI,site_created,[601],"[300, 301]",300,"['BstSFI', 'BfmI', 'SfcI', 'GsuI', 'BpmI']",excellent
+PCSK9,NM_174936.4(PCSK9):c.399+1G>A,,1,55044035,True,6,AsuHPI,site_destroyed,"[50, 167, 66, 30, 288]","[50, 167, 66, 318]",30,"['AsuHPI', 'HphI', 'LpnPI', 'SgeI', 'AbaSI']",poor

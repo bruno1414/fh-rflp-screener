@@ -1,0 +1,11 @@
+gene,cdna_change,protein_change,chrom,pos,rflp_detectable,n_enzymes,best_enzyme,change_type,wt_frags,mut_frags,frag_diff_bp,all_enzymes,gel_quality,enzyme_cost,rflp_score
+APOB,c.9721G>T,E3241*,2,21007147,True,23,EcoT38I,site_destroyed,"[301, 300]",[601],300,"['EcoT38I', 'Bsp1286I', 'SstI', 'Eco24I', 'SduI']",excellent,20,9.78
+APOB,c.11470C>T,Q3824*,2,21005398,True,16,MaeI,site_created,[601],"[300, 301]",300,"['MaeI', 'XspI', 'FspBI', 'SspMI', 'BfaI']",excellent,25,9.56
+LDLR,c.1865A>T,"D454V, D495V, D581V, D622V",19,11120111,True,6,EcoRV,site_destroyed,"[303, 298]",[601],298,"['EcoRV', 'Eco32I', 'HpyCH4III', 'Bst4CI', 'TaaI']",excellent,15,8.48
+LDLR,c.408C>G,"D136E, D95E",19,11105314,True,12,EcoT38I,site_created,[601],"[306, 295]",295,"['EcoT38I', 'Eco24I', 'BanII', 'FriOI', 'PcsI']",excellent,20,8.23
+APOB,c.8602G>T,E2868*,2,21008266,True,17,BstSFI,site_created,[601],"[300, 301]",300,"['BstSFI', 'BfmI', 'SfcI', 'GsuI', 'BpmI']",excellent,55,8.22
+APOB,c.5303C>A,S1768*,2,21011565,True,11,Eam1104I,site_destroyed,"[69, 228, 304]","[69, 532]",228,"['Eam1104I', 'Bst6I', 'MboII', 'EarI', 'AgsI']",excellent,40,8.17
+LDLR,c.483C>G,"I161M, I120M",19,11105389,True,28,PaeI,site_created,[601],"[302, 299]",299,"['PaeI', 'SphI', 'Hin1II', 'NlaIII', 'XceI']",excellent,30,7.82
+LDLR,c.986G>C,"C161S, C202S, C288S, C329S",19,11110697,True,13,BsrDI,site_destroyed,"[309, 292]",[601],292,"['BsrDI', 'BseMI', 'Bse3DI', 'BcoDI', 'BsmBI']",excellent,30,7.75
+LDLR,c.325T>A,"C109S, C68S",19,11105231,True,22,BtrI,site_destroyed,"[300, 301]",[601],300,"['BtrI', 'BmgBI', 'AjiI', 'EcoICRI', 'Ecl136II']",excellent,35,7.61
+LDLR,NM_000527.5(LDLR):c.68-2A>C,,19,11100221,True,18,BstDSI,site_created,[601],"[301, 300]",300,"['BstDSI', 'BtgI', 'TspGWI', 'DdeI', 'HpyF3I']",excellent,35,7.61
