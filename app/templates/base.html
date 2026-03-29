@@ -6,19 +6,27 @@
     <title>{% block title %}FH RFLP Screener{% endblock %}</title>
     <meta name="google-site-verification" content="zKMtYmHKiSTicUaskeDE8OSdW7k9uhKwtdjYDS4ouPE" />
     <style>
+        /*
+         * UI Element: Global Styles (Fonts, Background, Text Colors)
+         * Corresponds to: The overall look and feel of the entire application.
+         * Changes here affect all pages.
+         */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 
-                         "Segoe UI", sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
+                         "Segoe UI", sans-serif; /* UI: Main font for all text */
+            background: #0f172a; /* UI: Dark blue background color */
+            color: #e2e8f0; /* UI: Default text color */
             min-height: 100vh;
         }
 
-        /* Navigation */
+        /*
+         * UI Element: Navigation Bar (Top of every page)
+         * Corresponds to: The sticky header with the logo and navigation links.
+         */
         nav {
-            background: #1e293b;
+            background: #1e293b; /* UI: Navigation bar background color */
             border-bottom: 1px solid #334155;
             padding: 0 2rem;
             display: flex;
@@ -30,10 +38,14 @@
             z-index: 100;
         }
 
+        /*
+         * UI Element: Navigation Brand/Logo (Left side of nav bar)
+         * Corresponds to: "FH RFLP Screener v1.0" text at the top left.
+         */
         .nav-brand {
             font-size: 1.1rem;
             font-weight: 700;
-            color: #38bdf8;
+            color: #38bdf8; /* UI: Brand text color */
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -41,21 +53,25 @@
         }
 
         .nav-brand span {
-            background: #0ea5e9;
-            color: white;
+            background: #0ea5e9; /* UI: Version badge background color */
+            color: white; /* UI: Version badge text color */
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 600;
         }
 
+        /*
+         * UI Element: Navigation Links (Right side of nav bar)
+         * Corresponds to: "Home", "Panel Lookup", "Run Analysis" links.
+         */
         .nav-links {
             display: flex;
             gap: 0.5rem;
         }
 
         .nav-links a {
-            color: #94a3b8;
+            color: #94a3b8; /* UI: Default link text color */
             text-decoration: none;
             padding: 0.4rem 0.9rem;
             border-radius: 6px;
@@ -65,22 +81,28 @@
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #e2e8f0;
-            background: #334155;
+            color: #e2e8f0; /* UI: Link text color on hover/active */
+            background: #334155; /* UI: Link background on hover/active */
         }
 
-        /* Main content */
+        /*
+         * UI Element: Main Content Area
+         * Corresponds to: The central area where page-specific content is displayed.
+         */
         main {
             max-width: 1100px;
             margin: 0 auto;
             padding: 2.5rem 1.5rem;
         }
 
-        /* Cards */
+        /*
+         * UI Element: Cards (Boxes with content)
+         * Corresponds to: All rectangular content blocks, e.g., stats, feature sections.
+         */
         .card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 12px;
+            background: #1e293b; /* UI: Card background color */
+            border: 1px solid #334155; /* UI: Card border */
+            border-radius: 12px; /* UI: Card corner roundness */
             padding: 1.5rem;
             margin-bottom: 1.5rem;
         }
@@ -88,17 +110,20 @@
         .card h2 {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #f1f5f9;
+            color: #f1f5f9; /* UI: Card title color */
             margin-bottom: 1rem;
         }
 
-        /* Buttons */
+        /*
+         * UI Element: Buttons
+         * Corresponds to: All interactive buttons on the site.
+         */
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
             padding: 0.55rem 1.2rem;
-            border-radius: 8px;
+            border-radius: 8px; /* UI: Button corner roundness */
             border: none;
             font-size: 0.9rem;
             font-weight: 600;
@@ -108,20 +133,23 @@
         }
 
         .btn-primary {
-            background: #0ea5e9;
-            color: white;
+            background: #0ea5e9; /* UI: Primary button background color */
+            color: white; /* UI: Primary button text color */
         }
 
-        .btn-primary:hover { background: #0284c7; }
+        .btn-primary:hover { background: #0284c7; } /* UI: Primary button hover color */
 
         .btn-secondary {
-            background: #334155;
-            color: #e2e8f0;
+            background: #334155; /* UI: Secondary button background color */
+            color: #e2e8f0; /* UI: Secondary button text color */
         }
 
-        .btn-secondary:hover { background: #475569; }
+        .btn-secondary:hover { background: #475569; } /* UI: Secondary button hover color */
 
-        /* Badges */
+        /*
+         * UI Element: Badges (Small colored labels)
+         * Corresponds to: Gene labels (LDLR, APOB, PCSK9) and quality labels (Excellent, Good, Poor).
+         */
         .badge {
             display: inline-block;
             padding: 2px 8px;
@@ -130,14 +158,17 @@
             font-weight: 600;
         }
 
-        .badge-excellent { background: #064e3b; color: #6ee7b7; }
-        .badge-good      { background: #1e3a5f; color: #93c5fd; }
-        .badge-poor      { background: #451a03; color: #fdba74; }
-        .badge-ldlr      { background: #1e3a5f; color: #93c5fd; }
-        .badge-apob      { background: #3b0764; color: #d8b4fe; }
-        .badge-pcsk9     { background: #064e3b; color: #6ee7b7; }
+        .badge-excellent { background: #064e3b; color: #6ee7b7; } /* UI: Excellent badge colors */
+        .badge-good      { background: #1e3a5f; color: #93c5fd; } /* UI: Good badge colors */
+        .badge-poor      { background: #451a03; color: #fdba74; } /* UI: Poor badge colors */
+        .badge-ldlr      { background: #1e3a5f; color: #93c5fd; } /* UI: LDLR gene badge colors */
+        .badge-apob      { background: #3b0764; color: #d8b4fe; } /* UI: APOB gene badge colors */
+        .badge-pcsk9     { background: #064e3b; color: #6ee7b7; } /* UI: PCSK9 gene badge colors */
 
-        /* Tables */
+        /*
+         * UI Element: Tables
+         * Corresponds to: Data tables, such as the mutation panel table.
+         */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -147,7 +178,7 @@
         th {
             text-align: left;
             padding: 0.6rem 0.8rem;
-            color: #94a3b8;
+            color: #94a3b8; /* UI: Table header text color */
             font-weight: 500;
             border-bottom: 1px solid #334155;
             font-size: 0.8rem;
@@ -158,16 +189,19 @@
         td {
             padding: 0.7rem 0.8rem;
             border-bottom: 1px solid #1e293b;
-            color: #cbd5e1;
+            color: #cbd5e1; /* UI: Table cell text color */
         }
 
-        tr:hover td { background: #1e293b; }
+        tr:hover td { background: #1e293b; } /* UI: Table row hover background */
 
-        /* Form inputs */
+        /*
+         * UI Element: Form Inputs (Text fields, dropdowns)
+         * Corresponds to: Input fields and select boxes in forms.
+         */
         input, select {
-            background: #0f172a;
-            border: 1px solid #334155;
-            color: #e2e8f0;
+            background: #0f172a; /* UI: Input field background color */
+            border: 1px solid #334155; /* UI: Input field border */
+            color: #e2e8f0; /* UI: Input field text color */
             padding: 0.55rem 0.9rem;
             border-radius: 8px;
             font-size: 0.9rem;
@@ -177,13 +211,13 @@
         }
 
         input:focus, select:focus {
-            border-color: #0ea5e9;
+            border-color: #0ea5e9; /* UI: Input field border color on focus */
         }
 
         label {
             display: block;
             font-size: 0.8rem;
-            color: #94a3b8;
+            color: #94a3b8; /* UI: Form label text color */
             margin-bottom: 0.35rem;
             font-weight: 500;
         }
@@ -196,7 +230,10 @@
             gap: 1rem;
         }
 
-        /* Alerts */
+        /*
+         * UI Element: Alerts (Error/Success messages)
+         * Corresponds to: Notification boxes for errors or success messages.
+         */
         .alert {
             padding: 0.8rem 1rem;
             border-radius: 8px;
@@ -205,24 +242,27 @@
         }
 
         .alert-error {
-            background: #450a0a;
-            border: 1px solid #991b1b;
-            color: #fca5a5;
+            background: #450a0a; /* UI: Error alert background color */
+            border: 1px solid #991b1b; /* UI: Error alert border color */
+            color: #fca5a5; /* UI: Error alert text color */
         }
 
         .alert-success {
-            background: #052e16;
-            border: 1px solid #166534;
-            color: #86efac;
+            background: #052e16; /* UI: Success alert background color */
+            border: 1px solid #166534; /* UI: Success alert border color */
+            color: #86efac; /* UI: Success alert text color */
         }
 
-        /* Loading spinner */
+        /*
+         * UI Element: Loading Spinner
+         * Corresponds to: The animated spinner shown during loading states.
+         */
         .spinner {
             display: inline-block;
             width: 18px;
             height: 18px;
             border: 2px solid #334155;
-            border-top-color: #0ea5e9;
+            border-top-color: #0ea5e9; /* UI: Spinner color */
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
         }
@@ -231,9 +271,12 @@
 
         .hidden { display: none !important; }
 
-        /* Gel image */
+        /*
+         * UI Element: Gel Image Container
+         * Corresponds to: The box that holds the simulated gel image.
+         */
         .gel-container {
-            background: #111827;
+            background: #111827; /* UI: Gel container background color */
             border-radius: 10px;
             padding: 1rem;
             text-align: center;
@@ -244,10 +287,13 @@
             border-radius: 6px;
         }
 
-        /* Score bar */
+        /*
+         * UI Element: Score Bar
+         * Corresponds to: The visual progress bar for RFLP score.
+         */
         .score-bar {
             height: 6px;
-            background: #1e293b;
+            background: #1e293b; /* UI: Score bar background color */
             border-radius: 3px;
             overflow: hidden;
             margin-top: 4px;
@@ -255,14 +301,18 @@
 
         .score-fill {
             height: 100%;
-            background: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+            background: linear-gradient(90deg, #0ea5e9, #8b5cf6); /* UI: Score bar fill gradient */
             border-radius: 3px;
         }
 
+        /*
+         * UI Element: Footer (Bottom of every page)
+         * Corresponds to: The copyright/info text at the very bottom of the page.
+         */
         footer {
             text-align: center;
             padding: 2rem;
-            color: #475569;
+            color: #475569; /* UI: Footer text color */
             font-size: 0.8rem;
             border-top: 1px solid #1e293b;
             margin-top: 3rem;
@@ -270,10 +320,16 @@
     </style>
 </head>
 <body>
+    <!--
+     * UI Element: Navigation Bar (Top of every page)
+     * Corresponds to: The sticky header with the logo and navigation links.
+     -->
     <nav>
+        <!-- UI Element: Navigation Brand/Logo -->
         <a href="/" class="nav-brand">
             FH RFLP Screener <span>v1.0</span>
         </a>
+        <!-- UI Element: Navigation Links -->
         <div class="nav-links">
             <a href="/"        id="nav-home">Home</a>
             <a href="/panel"   id="nav-panel">Panel Lookup</a>
@@ -281,17 +337,27 @@
         </div>
     </nav>
 
+    <!--
+     * UI Element: Main Content Area
+     * Corresponds to: The central area where page-specific content is displayed.
+     * Content from index.html, panel.html, analyze.html will be inserted here.
+     -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
+    <!--
+     * UI Element: Footer (Bottom of every page)
+     * Corresponds to: The copyright/info text at the very bottom of the page.
+     -->
     <footer>
         FH RFLP Screener — Computational pipeline for low-cost 
         Familial Hypercholesterolemia screening
     </footer>
 
     <script>
-        // Highlight active nav link
+        // UI Element: Active Navigation Link Highlight (JavaScript)
+        // Corresponds to: The visual highlight on the current page's navigation link.
         const path = window.location.pathname;
         if (path === "/")        document.getElementById("nav-home").classList.add("active");
         if (path === "/panel")   document.getElementById("nav-panel").classList.add("active");

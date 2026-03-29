@@ -3,6 +3,10 @@
 
 {% block content %}
 
+<!-- 
+ * UI Element: Page Header
+ * Corresponds to: The main title "Panel Lookup" and its description at the top of the page.
+ -->
 <div style="margin-bottom:2rem;">
     <h1 style="font-size:1.6rem; font-weight:700; color:#f1f5f9;">
         Panel Lookup
@@ -13,24 +17,31 @@
     </p>
 </div>
 
-<!-- Search bar -->
+<!-- 
+ * UI Element: Search Bar
+ * Corresponds to: The input field and "Clear" button for filtering mutations.
+ -->
 <div class="card">
     <div style="display:flex; gap:0.75rem; align-items:center;">
-        <input type="text" id="search-input"
+        <input type="text" id="search-input" /* UI: Search input field */
                placeholder="Search by gene, mutation, or enzyme... e.g. LDLR, EcoRV, c.408"
                style="flex:1;"
                oninput="handleSearch(this.value)">
-        <button class="btn btn-secondary" onclick="clearSearch()">
+        <button class="btn btn-secondary" onclick="clearSearch()"> /* UI: Clear search button */
             Clear
         </button>
     </div>
+    <!-- UI Element: Search Status Message -->
     <div id="search-status" 
          style="color:#64748b; font-size:0.8rem; margin-top:0.5rem;">
         Showing all 10 panel mutations
     </div>
 </div>
 
-<!-- Results table -->
+<!-- 
+ * UI Element: Results Table
+ * Corresponds to: The table displaying the list of panel mutations.
+ -->
 <div class="card" style="padding:0; overflow:hidden;">
     <table id="mutations-table">
         <thead>
@@ -48,53 +59,54 @@
         </thead>
         <tbody id="table-body">
             {% for m in mutations %}
+            <!-- UI Element: Individual Mutation Row -->
             <tr class="mutation-row" 
                 data-mutation="{{ m.cdna_change }}"
                 style="cursor:pointer;"
-                onclick="viewDetail('{{ m.cdna_change }}')">
+                onclick="viewDetail(\'{{ m.cdna_change }}\')">
                 <td>
-                    <span class="badge badge-{{ m.gene | lower }}">
+                    <span class="badge badge-{{ m.gene | lower }}"> /* UI: Gene badge (e.g., LDLR) */
                         {{ m.gene }}
                     </span>
                 </td>
-                <td style="font-family:monospace; color:#38bdf8;">
+                <td style="font-family:monospace; color:#38bdf8;"> /* UI: cDNA Change text */
                     {{ m.cdna_change }}
                 </td>
-                <td style="color:#94a3b8; font-size:0.8rem;">
+                <td style="color:#94a3b8; font-size:0.8rem;"> /* UI: Protein Change text */
                     {{ m.protein_change if m.protein_change else "—" }}
                 </td>
-                <td style="font-family:monospace;">{{ m.best_enzyme }}</td>
-                <td style="font-size:0.8rem; color:#94a3b8;">
+                <td style="font-family:monospace;">{{ m.best_enzyme }}</td> /* UI: Best Enzyme text */
+                <td style="font-size:0.8rem; color:#94a3b8;"> /* UI: Site Change text */
                     {{ m.change_type | replace("_", " ") | title }}
                 </td>
                 <td>
-                    <span style="color:#34d399; font-weight:600;">
+                    <span style="color:#34d399; font-weight:600;"> /* UI: Fragment Difference text */
                         {{ m.frag_diff_bp }} bp
                     </span>
                 </td>
                 <td>
-                    <span class="badge badge-{{ m.gel_quality }}">
+                    <span class="badge badge-{{ m.gel_quality }}"> /* UI: Gel Quality badge (e.g., Excellent) */
                         {{ m.gel_quality }}
                     </span>
                 </td>
                 <td>
                     <div style="min-width:80px;">
                         <div style="font-size:0.8rem; 
-                                    color:#f1f5f9; font-weight:600;">
+                                    color:#f1f5f9; font-weight:600;"> /* UI: RFLP Score number */
                             {{ m.rflp_score }}
                         </div>
-                        <div class="score-bar">
+                        <div class="score-bar"> /* UI: RFLP Score bar background */
                             <div class="score-fill" 
-                                 style="width:{{ (m.rflp_score / 10 * 100)|int }}%">
+                                 style="width:{{ (m.rflp_score / 10 * 100)|int }}%"> /* UI: RFLP Score bar fill */
                             </div>
                         </div>
                     </div>
                 </td>
                 <td>
                     <button class="btn btn-secondary" 
-                            style="padding:0.3rem 0.7rem; font-size:0.8rem;"
+                            style="padding:0.3rem 0.7rem; font-size:0.8rem;" /* UI: View button for each row */
                             onclick="event.stopPropagation(); 
-                                     viewDetail('{{ m.cdna_change }}')">
+                                     viewDetail(\'{{ m.cdna_change }}\')">
                         View
                     </button>
                 </td>
@@ -104,7 +116,10 @@
     </table>
 </div>
 
-<!-- Detail modal -->
+<!-- 
+ * UI Element: Detail Panel (Modal/Sticky Card)
+ * Corresponds to: The pop-up/sticky card that shows detailed mutation info and gel simulation when a mutation is clicked.
+ -->
 <div id="detail-panel" class="card hidden" 
      style="position:sticky; bottom:1rem; 
             border:1px solid #0ea5e9; margin-top:1rem;">
@@ -112,34 +127,36 @@
     <div style="display:flex; 
                 justify-content:space-between; 
                 align-items:center; margin-bottom:1rem;">
-        <h2 id="detail-title">Mutation Detail</h2>
+        <h2 id="detail-title">Mutation Detail</h2> /* UI: Detail panel title */
         <button class="btn btn-secondary" 
-                style="padding:0.3rem 0.7rem;"
+                style="padding:0.3rem 0.7rem;" /* UI: Close button for detail panel */
                 onclick="closeDetail()">
             Close
         </button>
     </div>
 
+    <!-- UI Element: Detail Panel Loading State -->
     <div id="detail-loading" style="text-align:center; padding:2rem;">
-        <div class="spinner"></div>
+        <div class="spinner"></div> /* UI: Loading spinner */
         <div style="color:#64748b; margin-top:0.5rem; font-size:0.875rem;">
             Generating gel simulation...
         </div>
     </div>
 
+    <!-- UI Element: Detail Panel Content (after loading) -->
     <div id="detail-content" class="hidden">
         <div style="display:grid; 
                     grid-template-columns:1fr 1fr; 
                     gap:1.5rem;">
 
-            <!-- Gel image -->
+            <!-- UI Element: Gel Image in Detail Panel -->
             <div>
                 <div class="gel-container">
-                    <img id="detail-gel" src="" alt="Gel simulation">
+                    <img id="detail-gel" src="" alt="Gel simulation"> /* UI: Simulated gel image */
                 </div>
             </div>
 
-            <!-- Info -->
+            <!-- UI Element: Mutation Info Table in Detail Panel -->
             <div>
                 <table style="font-size:0.875rem;">
                     <tr>
@@ -147,7 +164,7 @@
                                    padding:0.4rem 0.8rem 0.4rem 0;
                                    border:none;">Gene</td>
                         <td id="d-gene" 
-                            style="border:none; font-weight:600;"></td>
+                            style="border:none; font-weight:600;"></td> /* UI: Gene value */
                     </tr>
                     <tr>
                         <td style="color:#64748b; 
@@ -155,13 +172,13 @@
                                    border:none;">cDNA Change</td>
                         <td id="d-cdna" 
                             style="border:none; font-family:monospace; 
-                                   color:#38bdf8;"></td>
+                                   color:#38bdf8;"></td> /* UI: cDNA Change value */
                     </tr>
                     <tr>
                         <td style="color:#64748b; 
                                    padding:0.4rem 0.8rem 0.4rem 0;
                                    border:none;">Protein Change</td>
-                        <td id="d-protein" style="border:none;"></td>
+                        <td id="d-protein" style="border:none;"></td> /* UI: Protein Change value */
                     </tr>
                     <tr>
                         <td style="color:#64748b; 
@@ -169,27 +186,27 @@
                                    border:none;">Best Enzyme</td>
                         <td id="d-enzyme" 
                             style="border:none; font-family:monospace; 
-                                   font-weight:600;"></td>
+                                   font-weight:600;"></td> /* UI: Best Enzyme value */
                     </tr>
                     <tr>
                         <td style="color:#64748b; 
                                    padding:0.4rem 0.8rem 0.4rem 0;
                                    border:none;">Site Change</td>
-                        <td id="d-change" style="border:none;"></td>
+                        <td id="d-change" style="border:none;"></td> /* UI: Site Change value */
                     </tr>
                     <tr>
                         <td style="color:#64748b; 
                                    padding:0.4rem 0.8rem 0.4rem 0;
                                    border:none;">WT Fragments</td>
                         <td id="d-wt" 
-                            style="border:none; font-family:monospace;"></td>
+                            style="border:none; font-family:monospace;"></td> /* UI: WT Fragments value */
                     </tr>
                     <tr>
                         <td style="color:#64748b; 
                                    padding:0.4rem 0.8rem 0.4rem 0;
                                    border:none;">Mutant Fragments</td>
                         <td id="d-mut" 
-                            style="border:none; font-family:monospace;"></td>
+                            style="border:none; font-family:monospace;"></td> /* UI: Mutant Fragments value */
                     </tr>
                     <tr>
                         <td style="color:#64748b; 
@@ -197,20 +214,25 @@
                                    border:none;">RFLP Score</td>
                         <td id="d-score" 
                             style="border:none; font-weight:700; 
-                                   color:#38bdf8;"></td>
+                                   color:#38bdf8;"></td> /* UI: RFLP Score value */
                     </tr>
                 </table>
             </div>
         </div>
     </div>
 
-    <div id="detail-error" class="alert alert-error hidden"></div>
+    <!-- UI Element: Detail Panel Error Message -->
+    <div id="detail-error" class="alert alert-error hidden"></div> /* UI: Error message for detail panel */
 </div>
 
 {% endblock %}
 
 {% block scripts %}
 <script>
+/*
+ * UI Element: Search Functionality (JavaScript)
+ * Corresponds to: The dynamic filtering of the mutation table based on user input.
+ */
 function handleSearch(query) {
     const status = document.getElementById("search-status");
     
@@ -250,6 +272,10 @@ function handleSearch(query) {
         });
 }
 
+/*
+ * UI Element: Clear Search Functionality (JavaScript)
+ * Corresponds to: Resets the search input and displays all panel mutations.
+ */
 function clearSearch() {
     document.getElementById("search-input").value = "";
     document.getElementById("search-status").textContent = 
@@ -258,6 +284,10 @@ function clearSearch() {
             .forEach(r => r.style.display = "");
 }
 
+/*
+ * UI Element: View Detail Functionality (JavaScript)
+ * Corresponds to: Opens the detail panel and fetches/displays mutation details and gel image.
+ */
 function viewDetail(mutation) {
     const panel   = document.getElementById("detail-panel");
     const loading = document.getElementById("detail-loading");
@@ -309,6 +339,10 @@ function viewDetail(mutation) {
         });
 }
 
+/*
+ * UI Element: Close Detail Panel Functionality (JavaScript)
+ * Corresponds to: Hides the mutation detail panel.
+ */
 function closeDetail() {
     document.getElementById("detail-panel").classList.add("hidden");
 }

@@ -3,6 +3,10 @@
 
 {% block content %}
 
+<!-- 
+ * UI Element: Page Header
+ * Corresponds to: The main title "Run Analysis" and its description at the top of the page.
+ -->
 <div style="margin-bottom:2rem;">
     <h1 style="font-size:1.6rem; font-weight:700; color:#f1f5f9;">
         Run Analysis
@@ -16,10 +20,14 @@
 <div style="display:grid; grid-template-columns:1fr 1fr; 
             gap:1.5rem; align-items:start;">
 
-    <!-- Input form -->
+    <!-- 
+     * UI Element: Mutation Input Form
+     * Corresponds to: The left-hand card containing input fields for gene, cDNA change, chromosome, position, ref/alt alleles.
+     -->
     <div class="card">
         <h2>Mutation Input</h2>
 
+        <!-- UI Element: Gene Selection Dropdown -->
         <div class="form-group">
             <label>Gene</label>
             <select id="input-gene">
@@ -29,12 +37,14 @@
             </select>
         </div>
 
+        <!-- UI Element: cDNA Change Input -->
         <div class="form-group">
             <label>cDNA Change (e.g. c.408C>G)</label>
             <input type="text" id="input-cdna" 
                    placeholder="c.408C>G">
         </div>
 
+        <!-- UI Element: Chromosome and Position Inputs -->
         <div class="form-row">
             <div class="form-group">
                 <label>Chromosome</label>
@@ -48,6 +58,7 @@
             </div>
         </div>
 
+        <!-- UI Element: Reference and Alternate Allele Inputs -->
         <div class="form-row">
             <div class="form-group">
                 <label>Reference allele</label>
@@ -61,6 +72,7 @@
             </div>
         </div>
 
+        <!-- UI Element: Run Analysis Button -->
         <button class="btn btn-primary" 
                 onclick="runAnalysis()"
                 id="run-btn"
@@ -70,7 +82,7 @@
             Run Analysis
         </button>
 
-        <!-- Quick fill examples -->
+        <!-- UI Element: Quick Fill Examples -->
         <div style="margin-top:1.2rem;">
             <div style="color:#64748b; 
                         font-size:0.8rem; 
@@ -80,27 +92,30 @@
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
                 <button class="btn btn-secondary"
                         style="padding:0.3rem 0.7rem; font-size:0.78rem;"
-                        onclick="fillExample('LDLR','c.408C>G','19','11105314','C','G')">
+                        onclick="fillExample(\'LDLR\',\'c.408C>G\',\'19\',\'11105314\',\'C\',\'G\')">
                     LDLR c.408C>G
                 </button>
                 <button class="btn btn-secondary"
                         style="padding:0.3rem 0.7rem; font-size:0.78rem;"
-                        onclick="fillExample('LDLR','c.1865A>T','19','11120111','A','T')">
+                        onclick="fillExample(\'LDLR\',\'c.1865A>T\',\'19\',\'11120111\',\'A\',\'T\')">
                     LDLR c.1865A>T
                 </button>
                 <button class="btn btn-secondary"
                         style="padding:0.3rem 0.7rem; font-size:0.78rem;"
-                        onclick="fillExample('APOB','c.9721G>T','2','21085170','G','T')">
+                        onclick="fillExample(\'APOB\',\'c.9721G>T\',\'2\',\'21085170\',\'G\',\'T\')">
                     APOB c.9721G>T
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Results panel -->
+    <!-- 
+     * UI Element: Results Area
+     * Corresponds to: The right-hand section that displays the idle, loading, error, or analysis results.
+     -->
     <div id="results-area">
 
-        <!-- Idle state -->
+        <!-- UI Element: Idle State (Initial view before analysis) -->
         <div id="idle-state" class="card" 
              style="text-align:center; padding:3rem 1.5rem;">
             <div style="font-size:2.5rem; margin-bottom:1rem;">⚗️</div>
@@ -111,7 +126,7 @@
             </div>
         </div>
 
-        <!-- Loading state -->
+        <!-- UI Element: Loading State (Shown during analysis) -->
         <div id="loading-state" class="card hidden"
              style="text-align:center; padding:3rem 1.5rem;">
             <div class="spinner" 
@@ -127,12 +142,15 @@
             </div>
         </div>
 
-        <!-- Error state -->
+        <!-- UI Element: Error State (Shown if analysis fails) -->
         <div id="error-state" class="hidden">
             <div class="alert alert-error" id="error-msg"></div>
         </div>
 
-        <!-- Results state -->
+        <!-- 
+         * UI Element: Results State (Shown after successful analysis)
+         * Corresponds to: The card displaying the analysis results and gel simulation.
+         -->
         <div id="result-state" class="hidden">
 
             <div class="card" 
@@ -145,6 +163,7 @@
                     <span id="result-quality-badge" class="badge"></span>
                 </div>
 
+                <!-- UI Element: Analysis Results Table -->
                 <table style="font-size:0.875rem; margin-bottom:1rem;">
                     <tr>
                         <td style="color:#64748b; padding:0.35rem 1rem 0.35rem 0; border:none;">
@@ -194,7 +213,7 @@
                     </tr>
                 </table>
 
-                <!-- Alternative enzymes -->
+                <!-- UI Element: Top Alternative Enzymes -->
                 <div style="margin-bottom:1rem;">
                     <div style="color:#64748b; 
                                 font-size:0.8rem; 
@@ -208,7 +227,7 @@
 
             </div>
 
-            <!-- Gel image -->
+            <!-- UI Element: Gel Image in Results -->
             <div class="card" style="padding:0; overflow:hidden;">
                 <div style="padding:0.8rem 1rem; 
                             border-bottom:1px solid #334155;">
@@ -230,6 +249,10 @@
 
 {% block scripts %}
 <script>
+/*
+ * UI Element: Fill Example Functionality (JavaScript)
+ * Corresponds to: Populating the input form fields with example mutation data.
+ */
 function fillExample(gene, cdna, chrom, pos, ref, alt) {
     document.getElementById("input-gene").value  = gene;
     document.getElementById("input-cdna").value  = cdna;
@@ -239,6 +262,10 @@ function fillExample(gene, cdna, chrom, pos, ref, alt) {
     document.getElementById("input-alt").value   = alt;
 }
 
+/*
+ * UI Element: Set State Functionality (JavaScript)
+ * Corresponds to: Toggling visibility between idle, loading, error, and result states.
+ */
 function setState(state) {
     ["idle-state","loading-state","error-state","result-state"]
         .forEach(id => {
@@ -248,6 +275,10 @@ function setState(state) {
             .classList.remove("hidden");
 }
 
+/*
+ * UI Element: Run Analysis Functionality (JavaScript)
+ * Corresponds to: Submitting the mutation form, showing loading, and displaying results or errors.
+ */
 function runAnalysis() {
     const gene  = document.getElementById("input-gene").value.trim();
     const cdna  = document.getElementById("input-cdna").value.trim();

@@ -3,33 +3,46 @@
 
 {% block content %}
 
-<!-- Hero -->
+<!-- 
+ * UI Element: Hero Section
+ * Corresponds to: The main title, description, and primary action buttons at the top of the home page.
+ * This section includes "FH RFLP Screener" title, the descriptive paragraph, and the "Browse Panel" / "Run Analysis" buttons.
+ -->
 <div style="text-align:center; padding: 3rem 0 2rem;">
+    <!-- UI Element: Tagline/Category Badge -->
     <div style="display:inline-block; background:#0c4a6e; 
                 color:#38bdf8; padding:4px 12px; border-radius:20px; 
                 font-size:0.8rem; font-weight:600; margin-bottom:1rem;">
         Computational Genomics Tool
     </div>
+    <!-- UI Element: Main Page Title -->
     <h1 style="font-size:2.4rem; font-weight:700; 
                color:#f1f5f9; line-height:1.2; margin-bottom:1rem;">
         FH RFLP Screener
     </h1>
+    <!-- UI Element: Page Description -->
     <p style="font-size:1.1rem; color:#94a3b8; 
               max-width:600px; margin:0 auto 2rem; line-height:1.7;">
         Identify which Familial Hypercholesterolemia mutations can be 
         detected using low-cost PCR–RFLP assays — making genetic 
         screening accessible worldwide.
     </p>
+    <!-- UI Element: Primary Action Buttons -->
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
         <a href="/panel"   class="btn btn-primary">Browse Panel</a>
         <a href="/analyze" class="btn btn-secondary">Run Analysis</a>
     </div>
 </div>
 
-<!-- Stats row -->
+<!-- 
+ * UI Element: Statistics Row (Cards)
+ * Corresponds to: The four small boxes displaying statistics like "27 P/LP variants analyzed", "100% RFLP detectable", etc.
+ * Each `div` with class `card` and inline style `text-align:center` represents one statistic box.
+ -->
 <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); 
             gap:1rem; margin:2rem 0;">
 
+    <!-- UI Element: Statistic Card 1 -->
     <div class="card" style="text-align:center; padding:1.5rem;">
         <div style="font-size:2rem; font-weight:700; color:#38bdf8;">27</div>
         <div style="color:#94a3b8; font-size:0.875rem; margin-top:4px;">
@@ -37,6 +50,7 @@
         </div>
     </div>
 
+    <!-- UI Element: Statistic Card 2 -->
     <div class="card" style="text-align:center; padding:1.5rem;">
         <div style="font-size:2rem; font-weight:700; color:#34d399;">100%</div>
         <div style="color:#94a3b8; font-size:0.875rem; margin-top:4px;">
@@ -44,6 +58,7 @@
         </div>
     </div>
 
+    <!-- UI Element: Statistic Card 3 -->
     <div class="card" style="text-align:center; padding:1.5rem;">
         <div style="font-size:2rem; font-weight:700; color:#a78bfa;">10</div>
         <div style="color:#94a3b8; font-size:0.875rem; margin-top:4px;">
@@ -51,6 +66,7 @@
         </div>
     </div>
 
+    <!-- UI Element: Statistic Card 4 -->
     <div class="card" style="text-align:center; padding:1.5rem;">
         <div style="font-size:2rem; font-weight:700; color:#fb923c;">98%</div>
         <div style="color:#94a3b8; font-size:0.875rem; margin-top:4px;">
@@ -60,10 +76,14 @@
 
 </div>
 
-<!-- Two feature cards -->
+<!-- 
+ * UI Element: Feature Cards (Panel Lookup & Run Analysis)
+ * Corresponds to: The two larger cards below the statistics, detailing "Panel Lookup" and "Run Analysis".
+ -->
 <div style="display:grid; grid-template-columns:1fr 1fr; 
             gap:1.5rem; margin-top:1rem;">
 
+    <!-- UI Element: Panel Lookup Feature Card -->
     <div class="card">
         <div style="font-size:1.5rem; margin-bottom:0.75rem;">🔍</div>
         <h2>Panel Lookup</h2>
@@ -76,6 +96,7 @@
         <a href="/panel" class="btn btn-primary">Browse Panel</a>
     </div>
 
+    <!-- UI Element: Run Analysis Feature Card -->
     <div class="card">
         <div style="font-size:1.5rem; margin-bottom:0.75rem;">⚗️</div>
         <h2>Run Analysis</h2>
@@ -90,13 +111,17 @@
 
 </div>
 
-<!-- How it works -->
+<!-- 
+ * UI Element: How it works Section
+ * Corresponds to: The section at the bottom explaining the 5 steps of the analysis pipeline.
+ -->
 <div class="card" style="margin-top:1.5rem;">
     <h2>How it works</h2>
     <div style="display:grid; 
                 grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); 
                 gap:1rem; margin-top:0.5rem;">
 
+        <!-- UI Element: How it works Step 1 -->
         <div style="text-align:center; padding:1rem;">
             <div style="font-size:1.4rem; margin-bottom:0.5rem;">1</div>
             <div style="font-weight:600; color:#f1f5f9; 
@@ -108,6 +133,7 @@
             </div>
         </div>
 
+        <!-- UI Element: How it works Step 2 -->
         <div style="text-align:center; padding:1rem;">
             <div style="font-size:1.4rem; margin-bottom:0.5rem;">2</div>
             <div style="font-weight:600; color:#f1f5f9; 
@@ -119,6 +145,7 @@
             </div>
         </div>
 
+        <!-- UI Element: How it works Step 3 -->
         <div style="text-align:center; padding:1rem;">
             <div style="font-size:1.4rem; margin-bottom:0.5rem;">3</div>
             <div style="font-weight:600; color:#f1f5f9; 
@@ -130,6 +157,7 @@
             </div>
         </div>
 
+        <!-- UI Element: How it works Step 4 -->
         <div style="text-align:center; padding:1rem;">
             <div style="font-size:1.4rem; margin-bottom:0.5rem;">4</div>
             <div style="font-weight:600; color:#f1f5f9; 
@@ -141,6 +169,7 @@
             </div>
         </div>
 
+        <!-- UI Element: How it works Step 5 -->
         <div style="text-align:center; padding:1rem;">
             <div style="font-size:1.4rem; margin-bottom:0.5rem;">5</div>
             <div style="font-weight:600; color:#f1f5f9; 
