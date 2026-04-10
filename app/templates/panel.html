@@ -3,11 +3,9 @@
 
 {% block content %}
 
-<div style="margin-bottom:2rem;">
-    <h1 style="font-size:1.6rem; font-weight:700; color:#f1f5f9;">
-        Panel Lookup
-    </h1>
-    <p style="color:#94a3b8; margin-top:0.4rem;">
+<div class="section-header">
+    <h1 style="font-size:1.6rem;">Panel Lookup</h1>
+    <p>
         Search and explore the recommended FH RFLP screening panel.
         Click any mutation to view its gel simulation.
     </p>
@@ -31,7 +29,7 @@
 </div>
 
 <!-- Results table -->
-<div class="card" style="padding:0; overflow:hidden;">
+<div class="card table-wrap" style="padding:0;">
     <table id="mutations-table">
         <thead>
             <tr>
@@ -43,7 +41,7 @@
                 <th>Frag Diff</th>
                 <th>Quality</th>
                 <th>Score</th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="table-body">
@@ -91,10 +89,9 @@
                     </div>
                 </td>
                 <td>
-                    <button class="btn btn-secondary" 
+                    <button class="btn btn-secondary"
                             style="padding:0.3rem 0.7rem; font-size:0.8rem;"
-                            onclick="event.stopPropagation(); 
-                                     viewDetail('{{ m.cdna_change }}')">
+                            onclick="event.stopPropagation(); viewDetail('{{ m.cdna_change }}')">
                         View
                     </button>
                 </td>
@@ -224,8 +221,11 @@ function handleSearch(query) {
         .then(data => {
             if (data.error) {
                 status.textContent = data.error;
+                status.style.color = "#fca5a5";
                 return;
             }
+
+            status.style.color = "#64748b";
 
             const tbody = document.getElementById("table-body");
             const rows  = tbody.querySelectorAll(".mutation-row");
@@ -252,8 +252,9 @@ function handleSearch(query) {
 
 function clearSearch() {
     document.getElementById("search-input").value = "";
-    document.getElementById("search-status").textContent = 
-        "Showing all 10 panel mutations";
+    const status = document.getElementById("search-status");
+    status.textContent = "Showing all 10 panel mutations";
+    status.style.color = "#64748b";
     document.querySelectorAll(".mutation-row")
             .forEach(r => r.style.display = "");
 }

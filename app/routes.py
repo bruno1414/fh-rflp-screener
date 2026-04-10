@@ -40,10 +40,13 @@ def api_search():
     """
     query = request.args.get("q", "").strip()
     if not query:
-        return jsonify({"error": "No search query provided."})
-    
-    results = search_panel(query)
-    return jsonify({"results": results, "count": len(results)})
+        return jsonify({"error": "No search query provided."}), 400
+
+    try:
+        results = search_panel(query)
+        return jsonify({"results": results, "count": len(results)})
+    except Exception:
+        return jsonify({"error": "Failed to search panel."}), 500
 
 
 @main.route("/api/detail")
@@ -54,10 +57,15 @@ def api_detail():
     """
     mutation = request.args.get("mutation", "").strip()
     if not mutation:
-        return jsonify({"error": "No mutation provided."})
-    
-    result = get_mutation_detail(mutation)
-    return jsonify(result)
+        return jsonify({"error": "No mutation provided."}), 400
+
+    try:
+        result = get_mutation_detail(mutation)
+        if result.get("error"):
+            return jsonify(result), 404
+        return jsonify(result)
+    except Exception:
+        return jsonify({"error": "Failed to fetch mutation details."}), 500
 
 
 @main.route("/api/analyze", methods=["POST"])
@@ -67,28 +75,38 @@ def api_analyze():
     POST /api/analyze
     Body: {gene, cdna_change, chrom, pos, ref, alt}
     """
-    data = request.get_json()
-    
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Invalid JSON body."}), 400
+
     # Validate required fields
     required = ["gene", "cdna_change", "chrom", "pos", "ref", "alt"]
     for field in required:
-        if not data.get(field):
-            return jsonify({"error": f"Missing field: {field}"})
-    
-    result = run_full_analysis(
-        gene        = data["gene"],
-        cdna_change = data["cdna_change"],
-        chrom       = data["chrom"],
-        pos         = data["pos"],
-        ref         = data["ref"],
-        alt         = data["alt"]
-    )
-    
-    return jsonify(result)
+        value = data.get(field)
+        if value is None or str(value).strip() == "":
+            return jsonify({"error": f"Missing field: {field}"}), 400
+
+    try:
+        result = run_full_analysis(
+            gene=data["gene"].strip(),
+            cdna_change=data["cdna_change"].strip(),
+            chrom=str(data["chrom"]).strip(),
+            pos=str(data["pos"]).strip(),
+            ref=str(data["ref"]).strip().upper(),
+            alt=str(data["alt"]).strip().upper()
+        )
+        if isinstance(result, dict) and result.get("error"):
+            return jsonify(result), 400
+        return jsonify(result)
+    except Exception:
+        return jsonify({"error": "Analysis failed due to an internal error."}), 500
 
 
 @main.route("/api/panel")
 def api_panel():
     """Return the full panel as JSON."""
-    mutations = get_panel_summary()
-    return jsonify({"panel": mutations, "count": len(mutations)})
+    try:
+        mutations = get_panel_summary()
+        return jsonify({"panel": mutations, "count": len(mutations)})
+    except Exception:
+        return jsonify({"error": "Failed to load panel data."}), 500
