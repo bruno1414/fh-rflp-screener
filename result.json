@@ -1,0 +1,78 @@
+{
+  "gene": "LDLR",
+  "cdna_change": "c.408C<G",
+  "best_enzyme": "BanII",
+  "change_type": "site_created",
+  "wt_frags": [
+    601
+  ],
+  "mut_frags": [
+    306,
+    295
+  ],
+  "frag_diff_bp": 295,
+  "gel_quality": "excellent",
+  "all_enzymes": [
+    {
+      "enzyme": "BanII",
+      "change_type": "site_created",
+      "wt_frags": [
+        601
+      ],
+      "mut_frags": [
+        306,
+        295
+      ],
+      "frag_diff_bp": 295
+    },
+    {
+      "enzyme": "FriOI",
+      "change_type": "site_created",
+      "wt_frags": [
+        601
+      ],
+      "mut_frags": [
+        306,
+        295
+      ],
+      "frag_diff_bp": 295
+    },
+    {
+      "enzyme": "EcoT38I",
+      "change_type": "site_created",
+      "wt_frags": [
+        601
+      ],
+      "mut_frags": [
+        306,
+        295
+      ],
+      "frag_diff_bp": 295
+    },
+    {
+      "enzyme": "Eco24I",
+      "change_type": "site_created",
+      "wt_frags": [
+        601
+      ],
+      "mut_frags": [
+        306,
+        295
+      ],
+      "frag_diff_bp": 295
+    },
+    {
+      "enzyme": "PcsI",
+      "change_type": "site_destroyed",
+      "wt_frags": [
+        307,
+        294
+      ],
+      "mut_frags": [
+        601
+      ],
+      "frag_diff_bp": 294
+    }
+  ],
+  "n_enzymes": 12
+}
